@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f0f4ff;
+  color: #1a1a2e;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#root {
+  width: 100%;
+  max-width: 480px;
+  padding: 20px;
+}
+
+.dashboard-header{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dashboard-header h2{
+  color:#1a3a8f;
+  margin-bottom: 5px;
+}
+
+.dashboard-header p{
+  color: #666;
+}
+
+.dashboard-grid{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.wallet-card{
+  background: linear-gradient(135deg,#1a3a8f,#345bd8);
+  color: white;
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 25px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.wallet-card p{
+  font-size: 16px;
+  color: rgba(255,255,255,0.8);
+}
+
+
+.wallet-card:hover{
+  transition:translateY(-3px);
+}
+
+.wallet-card h1{
+  margin: 10px 0;
+  font-size: 34px;
+}
+
+.fund-btn{
+  background: white;
+  color: #1a3a8f;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.service-btn{
+  background: #1a3a8f;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 22px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.service-btn:hover{
+  transform:translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 2px solid #c0cfe8;
+  border-radius: 8px;
+  font-size: 15px;
+  background: white;
+  color: #1a1a2e;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: #1a3a8f;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #1a3a8f;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #142d6e;
+}
+
+.btn-danger {
+  background-color: #c0392b;
+  color: white;
+}
+
+.balance-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.eye-btn{
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 8px 25px rgba(64, 56, 56, 0.8);
+  margin-top: 60px;
+}
+
+.page-container {
+  width: 100%;
+}
+
+h2 {
+  color: #1a3a8f;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+p {
+  margin-top: 12px;
+  color: #555;
+}
+
+a {
+  color: #1a3a8f;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
