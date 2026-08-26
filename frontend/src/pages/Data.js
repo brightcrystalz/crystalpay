@@ -51,7 +51,7 @@ function Data() {
       setLoading(true);
       setMessage('');
       const session = JSON.parse(localStorage.getItem('session'));
-      const res = await axios.post('http://localhost:5000/vtpass/data', {
+      const res = await axios.post('https://crystalpay-backend.onrender.com/vtpass/data', {
         network,
         phone,
         planCode: plan,

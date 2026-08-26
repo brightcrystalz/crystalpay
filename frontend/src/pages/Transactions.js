@@ -17,7 +17,7 @@ function Transactions() {
           setLoading(false);
           return;
         }
-        const res = await axios.get('http://localhost:5000/wallet/transactions', {
+        const res = await axios.get('https://crystalpay-backend.onrender.com/wallet/transactions', {
           headers: { Authorization: `Bearer ${session.access_token}` },
         });
         setTransactions(res.data.transactions);

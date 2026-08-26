@@ -18,7 +18,7 @@ function Wallet() {
         const { data: { session } } = await supabase.auth.getSession();
         if (!session) return;
         setEmail(session.user.email);
-        const res = await axios.get('http://localhost:5000/wallet/balance', {
+        const res = await axios.get('https://crystalpay-backend.onrender.com/wallet/balance', {
           headers: { Authorization: `Bearer ${session.access_token}` },
         });
         setBalance(res.data.balance);

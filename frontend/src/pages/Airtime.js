@@ -21,7 +21,7 @@ function Airtime() {
       setLoading(true);
       setMessage('');
       const { data: { session } } = await supabase.auth.getSession();
-const res = await axios.post('http://localhost:5000/vtpass/airtime', {
+const res = await axios.post('https://crystalpay-backend.onrender.com/vtpass/airtime', {
         network,
         phone,
         amount,

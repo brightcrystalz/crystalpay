@@ -22,7 +22,7 @@ function Electricity() {
       setLoading(true);
       setMessage('');
       const session = JSON.parse(localStorage.getItem('session'));
-      const res = await axios.post('http://localhost:5000/vtpass/electricity', {
+      const res = await axios.post('https://crystalpay-backend.onrender.com/vtpass/electricity', {
         disco,
         meterNumber,
         meterType,
