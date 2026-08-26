@@ -57,7 +57,7 @@ function Electricity() {
             <option value="ikeja-electric">Ikeja Electric (IKEDC)</option>
             <option value="eko-electric">Eko Electric (EKEDC)</option>
             <option value="abuja-electric">Abuja Electric (AEDC)</option>
-            <option value="kano-electric">Kano Electric (KAEDCO)</option>
+            <option value="kano-electric">Kano Electric (KEDCO)</option>
             <option value="portharcourt-electric">Port Harcourt Electric (PHEDC)</option>
             <option value="jos-electric">Jos Electric (JED)</option>
             <option value="ibadan-electric">Ibadan Electric (IBEDC)</option>
