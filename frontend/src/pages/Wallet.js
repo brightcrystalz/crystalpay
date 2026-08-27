@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { usePaystackPayment } from 'react-paystack';
+import BottomNav from '../BottomNav';
 import Navbar from './Navbar';
 import { supabase } from '../supabaseClient';
 

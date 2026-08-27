@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BottomNav from '../BottomNav';
 import axios from 'axios';
 import { supabase } from '../supabaseClient';
 import { Smartphone, Wifi, Zap, Wallet, FileText, Plus, Eye, EyeOff } from 'lucide-react';
@@ -99,6 +100,7 @@ function Dashboard() {
           Logout
         </button>
       </div>
+      <BottomNav />
     </div>
   );
 }

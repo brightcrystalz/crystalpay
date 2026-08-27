@@ -9,6 +9,7 @@ import Electricity from './pages/Electricity';
 import Wallet from './pages/Wallet';
 import Navbar from './pages/Navbar';
 import Transactions from './pages/Transactions';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/wallet" element={<Wallet />} />
         <Route path="/navbar" element={<Navbar />} />
         <Route path="/transactions" element={<Transactions />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );
