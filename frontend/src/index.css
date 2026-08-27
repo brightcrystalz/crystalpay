@@ -1,12 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  background-color: #f0f4ff;
+  background: linear-gradient(180deg, #eef2ff 0%, #f7f9ff 100%);
   color: #1a1a2e;
   min-height: 100vh;
   display: flex;
@@ -20,112 +22,196 @@ body {
   padding: 20px;
 }
 
-.dashboard-header{
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 14px 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(26, 58, 143, 0.08);
+  margin-bottom: 20px;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #1a3a8f;
+}
+
+.navbar-logo img {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+}
+
+.navbar-links a {
+  color: #445;
+  font-weight: 500;
+}
+
+.navbar-links a:hover {
+  color: #1a3a8f;
+}
+
+/* Dashboard header */
+.dashboard-header {
   text-align: center;
   margin-bottom: 20px;
 }
 
-.dashboard-header h2{
-  color:#1a3a8f;
+.dashboard-header h2 {
+  color: #1a3a8f;
   margin-bottom: 5px;
+  font-weight: 700;
 }
 
-.dashboard-header p{
-  color: #666;
+.dashboard-header p {
+  color: #6b7280;
 }
 
-.dashboard-grid{
+.dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 15px;
   margin-bottom: 25px;
 }
 
-.wallet-card{
-  background: linear-gradient(135deg,#1a3a8f,#345bd8);
+/* Wallet card */
+.wallet-card {
+  background: linear-gradient(135deg, #1a3a8f 0%, #2f4fb8 50%, #4169e1 100%);
   color: white;
-  padding: 25px;
-  border-radius: 16px;
+  padding: 28px 25px;
+  border-radius: 20px;
   margin-bottom: 25px;
   text-align: center;
   cursor: pointer;
-  transition: 0.3s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 12px 30px rgba(26, 58, 143, 0.25);
+  position: relative;
+  overflow: hidden;
 }
 
-.wallet-card p{
-  font-size: 16px;
-  color: rgba(255,255,255,0.8);
+.wallet-card::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 180px;
+  height: 180px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
 }
 
-
-.wallet-card:hover{
-  transition:translateY(-3px);
+.wallet-card p {
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
 }
 
-.wallet-card h1{
-  margin: 10px 0;
-  font-size: 34px;
+.wallet-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(26, 58, 143, 0.32);
 }
 
-.fund-btn{
+.wallet-card h1 {
+  margin: 12px 0;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.fund-btn {
   background: white;
   color: #1a3a8f;
   border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 11px 22px;
+  border-radius: 10px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.service-btn{
-  background: #1a3a8f;
-  color: white;
-  border: none;
-  border-radius: 14px;
+.fund-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Service buttons */
+.service-btn {
+  background: white;
+  color: #1a3a8f;
+  border: 1px solid #e2e8f7;
+  border-radius: 16px;
   padding: 22px;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(26, 58, 143, 0.06);
 }
 
-.service-btn:hover{
-  transform:translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+.service-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(26, 58, 143, 0.15);
+  border-color: #c5d3f5;
 }
 
+/* Inputs */
 input, select {
   width: 100%;
-  padding: 12px;
+  padding: 13px 14px;
   margin-bottom: 12px;
-  border: 2px solid #c0cfe8;
-  border-radius: 8px;
+  border: 2px solid #dde5f7;
+  border-radius: 10px;
   font-size: 15px;
-  background: white;
+  background: #fafbff;
   color: #1a1a2e;
   outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 input:focus, select:focus {
   border-color: #1a3a8f;
+  background: white;
 }
 
+/* Buttons */
 button {
   width: 100%;
-  padding: 12px;
+  padding: 13px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 16px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
 }
 
 .btn-primary {
-  background-color: #1a3a8f;
+  background: linear-gradient(135deg, #1a3a8f, #2f4fb8);
   color: white;
+  box-shadow: 0 6px 16px rgba(26, 58, 143, 0.25);
 }
 
 .btn-primary:hover {
-  background-color: #142d6e;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(26, 58, 143, 0.32);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 .btn-danger {
@@ -133,27 +219,39 @@ button {
   color: white;
 }
 
-.balance-section{
+.btn-danger:hover {
+  background-color: #a5321f;
+}
+
+.balance-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
-.eye-btn{
+.eye-btn {
   background: none;
   border: none;
-  color: white;
+  color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
+/* Card container */
 .card {
   background: white;
-  border-radius: 18px;
-  padding: 24px;
-  box-shadow: 0 8px 25px rgba(64, 56, 56, 0.8);
-  margin-top: 60px;
+  border-radius: 20px;
+  padding: 26px;
+  box-shadow: 0 10px 40px rgba(26, 58, 143, 0.12);
+  margin-top: 40px;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .page-container {
@@ -164,19 +262,42 @@ h2 {
   color: #1a3a8f;
   margin-bottom: 20px;
   font-size: 24px;
+  font-weight: 700;
 }
 
 p {
   margin-top: 12px;
-  color: #555;
+  color: #6b7280;
 }
 
 a {
   color: #1a3a8f;
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+/* Empty states */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #9ca3af;
+}
+
+.empty-state-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+  opacity: 0.6;
+}
+
+/* Transaction rows - subtle hover */
+.transaction-row {
+  transition: background 0.2s ease;
+}
+
+.transaction-row:hover {
+  background: #f7f9ff;
 }
