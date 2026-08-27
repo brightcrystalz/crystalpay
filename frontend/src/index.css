@@ -301,3 +301,53 @@ a:hover {
 .transaction-row:hover {
   background: #f7f9ff;
 }
+
+/* Quick actions row */
+.quick-actions {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.quick-action-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  width: auto;
+  padding: 12px 10px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  min-width: 64px;
+}
+
+.quick-action-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Service buttons with icons */
+.service-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.service-icon {
+  color: #1a3a8f;
+}
+
+.eye-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { supabase } from '../supabaseClient';
+import { Smartphone, Wifi, Zap, Wallet, FileText, Plus, Eye, EyeOff } from 'lucide-react';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -37,49 +38,51 @@ function Dashboard() {
           <h2>👋 Welcome Back!</h2>
           <p>Choose a service below to continue.</p>
         </div>
-        
 
         <div className="wallet-card">
           <p>Wallet Balance</p>
-          <div className="balance-section">
-            <h1>{showBalance ? `₦${balance.toLocaleString()}` : '********'}</h1>
-            <button className="eye-btn" onClick={() => setShowBalance(!showBalance)}>
-              {showBalance ? '🙈 Hide Balance' : '👁 Show Balance'}
-              </button>
-              <button className="fund-btn" onClick={() => navigate('/wallet')}>
-                + Fund Wallet
-              </button>
+          <h1>{showBalance ? `₦${balance.toLocaleString()}` : '••••••••'}</h1>
+
+          <button className="eye-btn" onClick={() => setShowBalance(!showBalance)}>
+            {showBalance ? <EyeOff size={14} /> : <Eye size={14} />}
+            {showBalance ? ' Hide Balance' : ' Show Balance'}
+          </button>
+
+          <div className="quick-actions">
+            <button className="quick-action-btn" onClick={() => navigate('/wallet')}>
+              <Plus size={18} />
+              <span>Fund</span>
+            </button>
+            <button className="quick-action-btn" onClick={() => navigate('/transactions')}>
+              <FileText size={18} />
+              <span>History</span>
+            </button>
+            <button className="quick-action-btn" onClick={() => navigate('/wallet')}>
+              <Wallet size={18} />
+              <span>Wallet</span>
+            </button>
           </div>
         </div>
+
         <div className="dashboard-grid">
-
-          
-          <button
-            className="service-btn"
-            onClick={() => navigate('/airtime')}
-          >
-            📱 Buy Airtime
+          <button className="service-btn" onClick={() => navigate('/airtime')}>
+            <Smartphone size={26} className="service-icon" />
+            <span>Buy Airtime</span>
           </button>
 
-          <button
-            className="service-btn"
-            onClick={() => navigate('/data')}
-             >
-            🌐 Buy Data
+          <button className="service-btn" onClick={() => navigate('/data')}>
+            <Wifi size={26} className="service-icon" />
+            <span>Buy Data</span>
           </button>
 
-          <button
-            className="service-btn"
-            onClick={() => navigate('/electricity')}
-            >
-            ⚡ Pay Electricity
+          <button className="service-btn" onClick={() => navigate('/electricity')}>
+            <Zap size={26} className="service-icon" />
+            <span>Pay Electricity</span>
           </button>
 
-          <button
-            className="service-btn"
-            onClick={() => navigate('/wallet')}
-          >
-            👛 My Wallet
+          <button className="service-btn" onClick={() => navigate('/wallet')}>
+            <Wallet size={26} className="service-icon" />
+            <span>My Wallet</span>
           </button>
 
           <button
@@ -87,7 +90,8 @@ function Dashboard() {
             onClick={() => navigate('/transactions')}
             style={{ gridColumn: '1 / -1' }}
           >
-            📝 Transaction History
+            <FileText size={26} className="service-icon" />
+            <span>Transaction History</span>
           </button>
         </div>
 
