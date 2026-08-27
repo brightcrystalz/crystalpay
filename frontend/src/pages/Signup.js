@@ -12,7 +12,7 @@ function Signup() {
 
   const handleSignup = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/auth/signup', {
+      const res = await axios.post('https://crystalpay-backend.onrender.com/auth/signup', {
         email,
         password,
         full_name: fullName,
