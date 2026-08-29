@@ -99,6 +99,7 @@ function Wallet() {
           {message && <p style={{ color: message.includes('success') ? 'green' : 'red' }}>{message}</p>}
         </div>
       </div>
+      <BottomNav />
     </>
   );
 }

@@ -78,6 +78,7 @@ function Transactions() {
           ))}
         </div>
       </div>
+      <BottomNav />
     </>
   );
 }
