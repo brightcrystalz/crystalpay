@@ -611,3 +611,35 @@ a:hover {
   color: #16a34a;
   flex-shrink: 0;
 }
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, #e8ecf7 25%, #f4f6fc 50%, #e8ecf7 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-text {
+  height: 14px;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+}
+
+.skeleton-balance {
+  height: 34px;
+  width: 140px;
+  margin: 10px auto;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+@keyframes shimmerLight {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

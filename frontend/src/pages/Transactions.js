@@ -44,7 +44,22 @@ function Transactions() {
           </button>
           <h2>Transaction History</h2>
 
-          {loading && <p>Loading...</p>}
+          {loading && (
+            <>
+            <div className="skeleton-row">
+              <div className="skeleton skeleton-text" style={{width: '40%'}} />
+              <div className="skeleton skeleton-text" style={{width: '70%'}} />
+            </div>
+            <div className="skeleton-row">
+              <div className="skeleton skeleton-text" style={{width: '40%'}} />
+              <div className="skeleton skeleton-text" style={{width: '70%'}} />
+            </div>
+            <div className="skeleton-row">
+              <div className="skeleton skeleton-text" style={{width: '40%'}} />
+              <div className="skeleton skeleton-text" style={{width: '70%'}} />
+            </div>
+            </>
+          )}
 
           {!loading && transactions.length === 0 && (
             <p style={{ textAlign: 'center', color: '#888' }}>No transactions yet.</p>

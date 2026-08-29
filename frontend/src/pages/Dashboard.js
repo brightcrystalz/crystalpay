@@ -10,6 +10,7 @@ function Dashboard() {
 
   const [showBalance, setShowBalance] = useState(false);
   const [balance, setBalance] = useState(0);
+  const [loadingBalance, setLoadingBalance] = useState(true);
 
   useEffect(() => {
     const fetchBalance = async () => {
@@ -22,6 +23,8 @@ function Dashboard() {
         setBalance(res.data.balance);
       } catch (err) {
         setBalance(0);
+      } finally {
+        setLoadingBalance(false);
       }
     };
     fetchBalance();
@@ -42,7 +45,11 @@ function Dashboard() {
 
         <div className="wallet-card">
           <p>Wallet Balance</p>
-          <h1>{showBalance ? `₦${balance.toLocaleString()}` : '••••••••'}</h1>
+          {loadingBalance ? (
+            <div className="skeleton skeleton-balance" />
+          ) : (
+            <h1>{showBalance ? `₦${balance.toLocaleString()}` : '********'}</h1>
+          )}
 
           <button className="eye-btn" onClick={() => setShowBalance(!showBalance)}>
             {showBalance ? <EyeOff size={14} /> : <Eye size={14} />}
