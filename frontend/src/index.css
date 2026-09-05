@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 100%;
 }
-
 body {
   background: linear-gradient(180deg, #eef2ff 0%, #f7f9ff 100%);
   color: #1a1a2e;
