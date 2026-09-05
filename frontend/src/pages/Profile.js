@@ -5,7 +5,7 @@ import BottomNav from '../BottomNav';
 import { supabase } from '../supabaseClient';
 import {
   Mail, Calendar, Shield, Bell, HelpCircle,
-  Info, LogOut, ChevronRight, Edit2, X, Check
+  Info, LogOut, ChevronRight, Edit2, X, Check, Eye, EyeOff
 } from 'lucide-react';
 
 function Profile() {
@@ -20,6 +20,8 @@ function Profile() {
 
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const [notifPrefs, setNotifPrefs] = useState({
     transactions: true,
