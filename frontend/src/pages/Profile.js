@@ -21,6 +21,10 @@ function Profile() {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const [displayName, setDisplayName] = useState('');
+  const [avatarUrl, setAvatarUrl] = useState('');
+  const [uploading, setUploading] = useState(false);
+  const [editMsg, setEditMsg] = useState('');
 
   const [notifPrefs, setNotifPrefs] = useState({
     transactions: true,
@@ -33,6 +37,8 @@ function Profile() {
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
         setEmail(user.email);
+        setDisplayName(user.user_metadata?.display_name || '');
+        setAvatarUrl(user.user_metadata?.avatar_url || '');
         const date = new Date(user.created_at);
         setJoined(date.toLocaleDateString('en-NG', { month: 'long', year: 'numeric' }));
       }
@@ -66,6 +72,53 @@ function Profile() {
     }
   };
 
+  const handleNameUpdate = async () => {
+    const { error } = await supabase.auth.updateUser({
+      data: { display_name: displayName },
+    });
+    if (error) {
+      setEditMsg(error.message);
+    } else {
+      setEditMsg('Name updated successfully!');
+    }
+  };
+
+  const handleAvatarUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setUploading(true);
+    const { data: { user } } = await supabase.auth.getUser();
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${user.id}-${Date.now()}.${fileExt}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from('avatars')
+      .upload(fileName, file);
+
+    if (uploadError) {
+      setEditMsg('Upload failed: ' + uploadError.message);
+      setUploading(false);
+      return;
+    }
+
+    const { data: urlData } = supabase.storage
+      .from('avatars')
+      .getPublicUrl(fileName);
+
+    const { error: updateError } = await supabase.auth.updateUser({
+      data: { avatar_url: urlData.publicUrl },
+    });
+
+    if (updateError) {
+      setEditMsg(updateError.message);
+    } else {
+      setAvatarUrl(urlData.publicUrl);
+      setEditMsg('Profile picture updated!');
+    }
+    setUploading(false);
+  };
+
   const toggleNotif = (key) => {
     setNotifPrefs((prev) => ({ ...prev, [key]: !prev[key] }));
   };
@@ -81,6 +134,7 @@ function Profile() {
   const closeModal = () => {
     setActiveModal(null);
     setPasswordMsg('');
+    setEditMsg('');
   };
 
   return (
@@ -89,14 +143,30 @@ function Profile() {
       <div className="page-container">
         <div className="card">
           <div className="profile-header">
-            <div className="profile-avatar">{initials}</div>
-            <h2 className="profile-name">{email ? email.split('@')[0] : 'User'}</h2>
+            <div className="profile-avatar-wrapper">
+              {avatarUrl ? (
+                <img src={avatarUrl} alt="Profile" className="profile-avatar-img" />
+              ) : (
+                <div className="profile-avatar">{initials}</div>
+              )}
+              <label className="avatar-upload-btn">
+                <Edit2 size={14} />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleAvatarUpload}
+                  style={{ display: 'none' }}
+                />
+              </label>
+            </div>
+            <h2 className="profile-name">{displayName || (email ? email.split('@')[0] : 'User')}</h2>
             <p className="profile-email">
               <Mail size={14} /> {email}
             </p>
             <p className="profile-joined">
               <Calendar size={14} /> Joined {joined}
             </p>
+            {uploading && <p className="modal-subtext">Uploading picture...</p>}
           </div>
 
           <div className="profile-menu">
@@ -121,8 +191,35 @@ function Profile() {
       </div>
       <BottomNav />
 
-      {/* Edit Profile / Change Password Modal */}
-      {(activeModal === 'edit' || activeModal === 'security') && (
+      {/* Edit Profile Modal (display name) */}
+      {activeModal === 'edit' && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>Edit Profile</h3>
+              <button className="modal-close" onClick={closeModal}><X size={20} /></button>
+            </div>
+            <p className="modal-subtext">Tap your avatar to change your profile picture.</p>
+            <input
+              type="text"
+              placeholder="Display name"
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+            />
+            <button className="btn-primary" onClick={handleNameUpdate}>
+              Save Name
+            </button>
+            {editMsg && (
+              <p style={{ color: editMsg.includes('successfully') || editMsg.includes('updated') ? 'green' : 'red', marginTop: '10px' }}>
+                {editMsg}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Security / Change Password Modal */}
+      {activeModal === 'security' && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
@@ -131,24 +228,24 @@ function Profile() {
             </div>
             <p className="modal-subtext">Email: {email}</p>
             <div className="password-field">
-        <input
-            type={showNewPassword ? 'text' : 'password'}
-            placeholder="New password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-        />
-            <button type="button" className="password-toggle" onClick={() => setShowNewPassword(!showNewPassword)}>
-              {showNewPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-            </button>
-          </div>
-          <div className="password-field">
-            <input
-              type={showConfirmPassword ? 'text' : 'password'}
-              placeholder="Confirm new password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-                <button type="button" className="password-toggle" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+              <input
+                type={showNewPassword ? 'text' : 'password'}
+                placeholder="New password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+              <button type="button" className="password-toggle" onClick={() => setShowNewPassword(!showNewPassword)}>
+                {showNewPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
+            <div className="password-field">
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                placeholder="Confirm new password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              <button type="button" className="password-toggle" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
                 {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
@@ -221,7 +318,7 @@ function Profile() {
             <ul className="help-faq">
               <li>How do I fund my wallet? Go to Wallet → Fund Wallet.</li>
               <li>Transaction failed? Check your wallet balance and try again.</li>
-              <li>Forgot password? Use "Change Password" under Edit Profile.</li>
+              <li>Forgot password? Use "Change Password" under Security & Privacy.</li>
             </ul>
           </div>
         </div>

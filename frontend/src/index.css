@@ -720,3 +720,33 @@ a:hover {
   padding: 6px;
   cursor: pointer;
 }
+
+.profile-avatar-wrapper {
+  position: relative;
+  width: 76px;
+  margin: 0 auto 14px;
+}
+
+.profile-avatar-img {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(26, 58, 143, 0.25);
+}
+
+.avatar-upload-btn {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background: #1a3a8f;
+  color: white;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid white;
+}
