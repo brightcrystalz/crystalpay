@@ -21,7 +21,6 @@ function Profile() {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const [showPassword, setShowPassword] = useState(false);
 
   const [notifPrefs, setNotifPrefs] = useState({
     transactions: true,
