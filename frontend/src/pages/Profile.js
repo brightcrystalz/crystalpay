@@ -18,6 +18,9 @@ function Profile() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordMsg, setPasswordMsg] = useState('');
 
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const [notifPrefs, setNotifPrefs] = useState({
     transactions: true,
     promotions: false,
@@ -126,18 +129,28 @@ function Profile() {
               <button className="modal-close" onClick={closeModal}><X size={20} /></button>
             </div>
             <p className="modal-subtext">Email: {email}</p>
+            <div className="password-field">
+        <input
+            type={showNewPassword ? 'text' : 'password'}
+            placeholder="New password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+        />
+            <button type="button" className="password-toggle" onClick={() => setShowNewPassword(!showNewPassword)}>
+              {showNewPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
+          <div className="password-field">
             <input
-              type="password"
-              placeholder="New password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-            />
-            <input
-              type="password"
+              type={showConfirmPassword ? 'text' : 'password'}
               placeholder="Confirm new password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
+                <button type="button" className="password-toggle" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
             <button className="btn-primary" onClick={handlePasswordUpdate}>
               Update Password
             </button>

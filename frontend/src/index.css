@@ -699,3 +699,24 @@ a:hover {
   font-weight: 700;
   color: #1a3a8f;
 }
+
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 44px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  padding: 6px;
+  cursor: pointer;
+}
